@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="ClientIntegrationRequest">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="APIKey" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="DeviceID" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="DeviceVersion" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="RequestUID" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="Function" fixed="LaunchFunctionality" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="FunctionVersion" fixed="1" minOccurs="1" maxOccurs="1" type="xs:decimal"/>
+            <xs:element name="FunctionParameters" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Identity" minOccurs="1" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="NHSNumber" maxOccurs="1" type="xs:string"/>
+                                    <xs:element name="PseudoNumber" maxOccurs="1" type="xs:string"/>
+                                    <xs:element name="ClientID" maxOccurs="1" type="xs:string"/>
+                                    <!--Either NHSNumber, PseudoNumber or ClientID is required, but only one-->
+                                    <xs:element name="StrategicReportingIdentifier" maxOccurs="1" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <!--Only one of the below optional elements should be sent-->
+                        <xs:element name="Medication" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Drug" minOccurs="1" maxOccurs="1">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                            </xs:sequence>
+                                            <xs:attribute name="Scheme" use="required">
+                                                <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                        <xs:enumeration value="Multilex"/>
+                                                        <xs:enumeration value="Dmd"/>
+                                                    </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:attribute>
+                                            <xs:attribute name="ProductID" use="required" type="xs:string"/>
+                                            <xs:attribute name="PackID" type="xs:integer"/>
+                                            <!--PackID is only used when the Scheme is Multilex-->
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="Dose" minOccurs="1" maxOccurs="1" type="xs:string"/>
+                                    <xs:element name="Quantity" minOccurs="1" maxOccurs="1" type="xs:string"/>
+                                    <xs:element name="StartDate" minOccurs="1" maxOccurs="1" type="xs:date"/>
+                                    <xs:element name="EndDate" minOccurs="1" maxOccurs="1" type="xs:date"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="ClinicalCode" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Code" minOccurs="1" maxOccurs="1">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                            </xs:sequence>
+                                            <xs:attribute name="Scheme" use="required">
+                                                <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                        <xs:enumeration value="CTV3"/>
+                                                        <xs:enumeration value="Snomed"/>
+                                                    </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:attribute>
+                                            <xs:attribute name="Code" use="required" type="xs:string"/>
+                                            <xs:attribute name="Term" type="xs:string"/>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="ProblemSeverity" maxOccurs="1">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="Major"/>
+                                                <xs:enumeration value="Minor"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <!--Specify the problem severity to turn this new code into a Problem Header-->
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="Attachment" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="DocumentPath" maxOccurs="1" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+</xs:schema>

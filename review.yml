@@ -1,0 +1,146 @@
+aid: tpp-systmone
+name: TPP (SystmOne)
+review:
+  question: Does TPP expose a public, self-serve developer portal and machine-readable API contract (OpenAPI or FHIR CapabilityStatement) for SystmOne?
+  answer: partial
+  date: '2026-07-24'
+  reviewer: API Evangelist
+  homeMarket: United Kingdom
+findings:
+  summary: |
+    TPP does not operate a public self-serve developer portal, and no
+    self-registration or public sandbox is available. Integration is a gated,
+    NHS partner-conformance process. The closest first-party equivalent of a
+    developer portal is TPP's Integration Request page
+    (https://tpp-uk.com/resources/integration-request/, HTTP 200), which hosts
+    the process and links downloadable interface specifications. National
+    integration runs through NHS England's Interface Mechanism 1 (IM1) and the
+    GP Connect FHIR programme under the Digital Care Services framework, gated
+    by a Supplier Conformance Assessment List (SCAL) approved by NHS England.
+
+    Real machine-readable contracts WERE harvested - but as XML/XSD, not
+    OpenAPI. The SystmOne Client Integration API is XML-over-TCP-socket and
+    ships 17 XSD schema files plus a v33.4 specification PDF and an example-
+    messages archive. PFS, Generic HTML, and Telephony APIs ship as downloadable
+    specification packages. No OpenAPI/Swagger document is published. No
+    TPP-hosted FHIR CapabilityStatement (/metadata) or SMART-on-FHIR
+    .well-known/smart-configuration exists: GP Connect FHIR endpoints and
+    CapabilityStatements are provisioned per-practice via the NHS Spine, not on
+    a single TPP host, so none was captured for this profile.
+  developerPortal:
+    url: https://tpp-uk.com/resources/integration-request/
+    httpStatus: 200
+    confirmed: true
+    note: Integration Request process page; not a self-serve portal - approval + NHS SCAL required.
+  fhirCapabilityStatement:
+    captured: false
+    fhirVersion: null
+    resources: []
+    note: >-
+      TPP SystmOne participates in the NHS GP Connect FHIR programme (FHIR
+      STU3/R4 depending on capability), but CapabilityStatements are per-practice
+      via the NHS Spine Security Proxy, not on a TPP-hosted /metadata endpoint.
+      tpp-uk.com/.well-known/smart-configuration returned HTTP 404. No verbatim
+      CapabilityStatement was fetchable from a TPP host.
+  smartConfiguration:
+    url: https://tpp-uk.com/.well-known/smart-configuration
+    httpStatus: 404
+    captured: false
+  openapiHarvested: false
+  specsHarvested:
+    count: 6
+    format: XML/XSD schemas + PDF specification + example messages (not OpenAPI/FHIR)
+    files:
+    - path: schemas/SystmOne-Client-Integration-API-v33.4.pdf
+      source: https://tpp-uk.com/wp-content/uploads/2026/02/SystmOne-Client-Integration-API-v33.4.pdf
+      httpStatus: 200
+      note: SystmOne Client Integration Interface Specification v33.4 (PDF), verbatim.
+    - path: schemas/schemas-2.zip
+      source: https://tpp-uk.com/wp-content/uploads/2022/03/schemas-2.zip
+      httpStatus: 200
+      note: 17 XSD schema files (unzipped into schemas/schemas/) - DataExtract, DeletePatientRecord, ExitClient, GetAppointmentSlots, GetCurrentActivity, GetCurrentSelection, GetDiary, GetDocument, GetFunctions, GetOrganisationMetaData, GetPatientRecord, GetReferenceData, GetXSDFiles, IsPatientRetrieved, LaunchFunctionality, PatientSearch, UpdatePatientRecord.
+    - path: schemas/example-messages-2.zip
+      source: https://tpp-uk.com/wp-content/uploads/2022/03/example-messages-2.zip
+      httpStatus: 200
+      note: Example XML request/response messages per function, verbatim.
+    - path: schemas/PFS-API.zip
+      source: https://tpp-uk.com/wp-content/uploads/2020/11/PFS-API.zip
+      httpStatus: 200
+      note: Patient Facing Services API spec PDF + example messages, verbatim.
+    - path: schemas/Generic-HTML-API.zip
+      source: https://tpp-uk.com/wp-content/uploads/2020/11/Generic-HTML-API.zip
+      httpStatus: 200
+      note: Generic HTML API specification package, verbatim.
+    - path: schemas/Telephony-API.zip
+      source: https://tpp-uk.com/wp-content/uploads/2020/11/Telephony-API.zip
+      httpStatus: 200
+      note: Telephony API specification package, verbatim.
+  authModel:
+    scheme: NHS partner conformance (SCAL) - not open OAuth/SMART
+    details: >-
+      No self-serve API keys or public OAuth. IM1 and GP Connect access is
+      granted only after the Digital Care Services IM1 Pairing Integration
+      Process and an NHS-approved Supplier Conformance Assessment List (SCAL).
+      GP Connect FHIR calls are authenticated with NHS-issued JWT (carrying
+      cross-organisation audit + provenance claims) over the Spine Security
+      Proxy. The SystmOne Client Integration API uses a per-integration Device
+      ID over a TCP socket. Not SMART-on-FHIR; no patient/*.read style scopes.
+  standardsConformance:
+    usCore: false
+    ukCore: partial
+    auCore: false
+    daVinci: false
+    carin: false
+    note: >-
+      UK-context standards apply: HL7 FHIR via NHS GP Connect (NHS-profiled,
+      with UK Core alignment on newer capabilities) and NHS IM1. No US Core /
+      Da Vinci / CARIN / AU Core (US/AU regimes) - this is an NHS England estate.
+  gatedVsSelfServe: gated
+  transports:
+  - protocol: TCP Socket (XML)
+    scheme: tcp
+    documented: true
+    note: SystmOne Client Integration API - XML documents over a TCP socket connection.
+  - protocol: REST (FHIR)
+    scheme: https
+    documented: true
+    note: GP Connect FHIR API via NHS Spine; endpoints provisioned per-practice, JWT-secured.
+  - protocol: REST / SOAP-style (IM1)
+    scheme: https
+    documented: true
+    note: NHS England IM1 Transaction / Bulk / Patient Facing Services APIs; standards in NHS developer catalogue.
+  - protocol: WebSocket
+    scheme: wss
+    documented: false
+    note: No WebSocket surface documented.
+sources:
+- url: https://tpp-uk.com
+  type: Website
+  httpStatus: 200
+  note: Company homepage; SystmOne, 61M records, 7,800 organisations.
+- url: https://tpp-uk.com/resources/integration-request/
+  type: DeveloperPortal
+  httpStatus: 200
+  note: Integration Request process + downloadable API specs (Client Integration v33.4, PFS, Generic HTML, Telephony, schemas, example messages).
+- url: https://digital.nhs.uk/developer/api-catalogue/interface-mechanism-1-standards
+  type: APIReference
+  httpStatus: 403
+  note: NHS England IM1 API standards catalogue. Bot-protected (403 to automated fetch); confirmed live/canonical via search.
+- url: https://digital.nhs.uk/services/gp-connect
+  type: Documentation
+  httpStatus: 403
+  note: NHS England GP Connect FHIR programme. Bot-protected (403 to automated fetch); confirmed live/canonical via search.
+- url: https://tpp-uk.com/news/tpp-systmone-clinical-records-now-available-through-gp-connect-for-authorised-record-viewing/
+  type: Announcement
+  note: TPP announcement that SystmOne records are available via GP Connect FHIR for authorised record viewing.
+actions:
+  apisYmlUpdated: true
+  specsSaved: 6
+  reason: |
+    Captured a real (gated) integration surface: the TPP Integration Request
+    portal plus six verbatim downloadable specification artifacts (XML/XSD +
+    PDFs), and modelled the national IM1 and GP Connect FHIR routes. No OpenAPI
+    and no TPP-hosted FHIR CapabilityStatement exist, so none were fabricated.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

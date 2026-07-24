@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="ClientIntegrationRequest">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="APIKey" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="DeviceID" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="DeviceVersion" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="RequestUID" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="Function" fixed="PatientSearch" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="FunctionVersion" fixed="1" minOccurs="1" maxOccurs="1" type="xs:decimal"/>
+            <xs:element name="FunctionParameters" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="FirstName" maxOccurs="1" type="xs:string"/>
+                        <xs:element name="Surname" maxOccurs="1" type="xs:string"/>
+                        <xs:element name="DateOfBirth" maxOccurs="1" type="xs:date"/>
+                        <xs:element name="PostCode" maxOccurs="1" type="xs:string"/>
+                        <xs:element name="Telephone" maxOccurs="1" type="xs:string"/>
+                        <xs:element name="Gender" maxOccurs="1">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="M"/>
+                                    <xs:enumeration value="F"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <!--Note, at least two of the above optional elements is required-->
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+</xs:schema>

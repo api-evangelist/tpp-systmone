@@ -1,0 +1,190 @@
+aid: tpp-systmone
+url: https://raw.githubusercontent.com/api-evangelist/tpp-systmone/refs/heads/main/apis.yml
+name: TPP (SystmOne)
+kind: company
+description: >-
+  TPP (The Phoenix Partnership) is a UK healthcare software company founded in 1997 and
+  headquartered in Leeds, England. Its flagship clinical system, SystmOne, is one of the
+  two dominant GP electronic health record platforms in England (alongside EMIS Web) and
+  holds more than 61 million patient records shared across the NHS, serving over 300,000
+  users and 7,800+ organisations spanning general practice, hospitals, urgent care, mental
+  health, community, and social care. TPP does not operate a public self-serve developer
+  portal; integration is a gated, partner-conformance process. Third parties integrate with
+  SystmOne through NHS England's Interface Mechanism 1 (IM1 Transaction, Bulk, and Patient
+  Facing Services APIs) and the national GP Connect FHIR programme, both governed by the
+  Digital Care Services (DCS) framework and a Supplier Conformance Assessment List (SCAL)
+  approved by NHS England. TPP additionally publishes its own downloadable interface
+  specifications - the SystmOne Client Integration API (XML over a TCP socket), a Patient
+  Facing Services (PFS) API, a Generic HTML API, and a Telephony API - and a formal
+  Integration Request process. Home market is the United Kingdom, exclusively within the NHS.
+accessModel:
+  pricing: enterprise
+  onboarding: partner
+  trial: false
+  try_now: false
+  public: false
+  label: NHS partner conformance (IM1 / GP Connect / TPP Integration Request)
+  confidence: high
+  source:
+  - integration-request
+  - im1-pairing
+  generated: '2026-07-24'
+  method: reviewed
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Healthcare
+- United Kingdom
+- EHR
+- EMR
+- FHIR
+- HL7
+- Interoperability
+- GP Connect
+- IM1
+- National Health System
+- Primary Care
+- Clinical System
+created: '2026-07-24'
+modified: '2026-07-24'
+specificationVersion: '0.19'
+apis:
+- aid: tpp-systmone:systmone-client-integration-api
+  name: SystmOne Client Integration API
+  description: >-
+    TPP's local client-integration interface allowing an approved third-party application to
+    interact with a running SystmOne client. Communication is performed with XML documents
+    (validated against published XSD schemas) sent and received over a TCP socket connection.
+    Documented functions include GetFunctions, GetOrganisationMetaData, GetCurrentActivity,
+    GetCurrentSelection, PatientSearch, GetPatientRecord, UpdatePatientRecord, GetDocument,
+    DeleteFromPatientRecord, GetAppointmentSlots, GetDiary, DataExtract, LaunchFunctionality,
+    and ExitClient. Access requires TPP's Integration Request approval.
+  humanURL: https://tpp-uk.com/resources/integration-request/
+  tags:
+  - Integration
+  - EHR
+  - Clinical System
+  - XML
+  properties:
+  - type: Documentation
+    url: https://tpp-uk.com/resources/integration-request/
+  - type: Specification
+    url: schemas/SystmOne-Client-Integration-API-v33.4.pdf
+  - type: Schema
+    url: schemas/schemas/
+  - type: ExampleMessages
+    url: schemas/example-messages-2.zip
+- aid: tpp-systmone:systmone-pfs-api
+  name: SystmOne Patient Facing Services (PFS) API
+  description: >-
+    TPP's Patient Facing Services API, enabling patient-facing applications to interact with
+    SystmOne for services such as appointment booking, prescription requests, and record
+    access. Distributed as a downloadable specification package (spec PDF plus example
+    messages). Access requires TPP's Integration Request approval and NHS conformance.
+  humanURL: https://tpp-uk.com/resources/integration-request/
+  tags:
+  - Patient Facing Services
+  - Appointments
+  - Prescriptions
+  properties:
+  - type: Documentation
+    url: https://tpp-uk.com/resources/integration-request/
+  - type: Specification
+    url: schemas/PFS-API.zip
+- aid: tpp-systmone:systmone-generic-html-api
+  name: SystmOne Generic HTML API
+  description: >-
+    TPP's Generic HTML API for embedding and launching third-party web content in context
+    within the SystmOne client. Distributed as a downloadable specification package. Access
+    requires TPP's Integration Request approval.
+  humanURL: https://tpp-uk.com/resources/integration-request/
+  tags:
+  - HTML
+  - Embedding
+  - Integration
+  properties:
+  - type: Documentation
+    url: https://tpp-uk.com/resources/integration-request/
+  - type: Specification
+    url: schemas/Generic-HTML-API.zip
+- aid: tpp-systmone:systmone-telephony-api
+  name: SystmOne Telephony API
+  description: >-
+    TPP's Telephony API for integrating telephony systems with SystmOne, supporting
+    computer-telephony workflows such as inbound-call patient matching. Distributed as a
+    downloadable specification package. Access requires TPP's Integration Request approval.
+  humanURL: https://tpp-uk.com/resources/integration-request/
+  tags:
+  - Telephony
+  - CTI
+  - Integration
+  properties:
+  - type: Documentation
+    url: https://tpp-uk.com/resources/integration-request/
+  - type: Specification
+    url: schemas/Telephony-API.zip
+- aid: tpp-systmone:im1-interface-mechanism-1
+  name: Interface Mechanism 1 (IM1)
+  description: >-
+    The NHS England national integration route by which approved third-party applications
+    connect directly to GP clinical systems including TPP SystmOne. IM1 comprises the
+    Transaction API (real-time read/write, e.g. appointment booking and structured record
+    updates), the Bulk API (Strategic Reporting Extracts / aggregated data extraction), and
+    the Patient Facing Services API. Onboarding is via the Digital Care Services IM1 Pairing
+    Integration Process and a Supplier Conformance Assessment List (SCAL) approved by NHS
+    England. Standards are published in the NHS England developer API catalogue, not on a
+    TPP-hosted portal.
+  humanURL: https://digital.nhs.uk/developer/api-catalogue/interface-mechanism-1-standards
+  tags:
+  - IM1
+  - National Health System
+  - Interoperability
+  - EHR
+  properties:
+  - type: Documentation
+    url: https://digital.nhs.uk/services/digital-services-for-integrated-care/im1-pairing-integration
+  - type: APIReference
+    url: https://digital.nhs.uk/developer/api-catalogue/interface-mechanism-1-standards
+- aid: tpp-systmone:gp-connect
+  name: GP Connect (FHIR)
+  description: >-
+    GP Connect is NHS England's national FHIR-based interoperability programme. TPP SystmOne
+    clinical records are exposed through GP Connect's FHIR API for authorised record viewing,
+    appointment management, and structured record access across care settings. FHIR
+    CapabilityStatements and endpoints are provisioned per-practice through the NHS Spine and
+    the Digital Care Services framework - there is no single TPP-hosted FHIR base URL or
+    public /metadata endpoint. Security uses NHS-issued JWT (cross-organisation audit and
+    provenance) over the Spine Security Proxy, not open SMART-on-FHIR.
+  humanURL: https://digital.nhs.uk/services/gp-connect
+  tags:
+  - FHIR
+  - GP Connect
+  - Interoperability
+  - National Health System
+  - HL7
+  properties:
+  - type: Documentation
+    url: https://digital.nhs.uk/services/gp-connect
+  - type: Announcement
+    url: https://tpp-uk.com/news/tpp-systmone-clinical-records-now-available-through-gp-connect-for-authorised-record-viewing/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+common:
+- type: Website
+  url: https://tpp-uk.com
+- type: DeveloperPortal
+  url: https://tpp-uk.com/resources/integration-request/
+- type: Documentation
+  url: https://tpp-uk.com/resources/integration-request/
+- type: GettingStarted
+  url: https://digital.nhs.uk/services/digital-services-for-integrated-care/im1-pairing-integration
+- type: Blog
+  url: https://tpp-uk.com/news-insights/
+- type: Support
+  url: https://tpp-uk.com/contact_us/
+- type: PrivacyPolicy
+  url: https://tpp-uk.com/privacy-policy/
+- type: Security
+  url: https://tpp-uk.com/cyber-essentials-plus/
+- type: Compliance
+  url: https://tpp-uk.com/iso-27001/
