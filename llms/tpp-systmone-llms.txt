@@ -1,0 +1,36 @@
+# TPP (SystmOne)
+
+> TPP (The Phoenix Partnership) is a UK healthcare software company (founded 1997, Leeds, England) whose flagship clinical system, SystmOne, is one of England's two dominant GP electronic health record platforms, holding 61M+ shared patient records across 7,800+ NHS organisations. TPP runs no public self-serve developer portal; integration is a gated NHS partner-conformance process via NHS England's Interface Mechanism 1 (IM1) and the national GP Connect FHIR programme, plus TPP's own downloadable interface specifications and a formal Integration Request process.
+
+## Integration routes (APIs)
+- [SystmOne Client Integration API](https://tpp-uk.com/resources/integration-request/): Local client-integration interface; XML documents over a TCP socket, validated against published XSD schemas (GetPatientRecord, UpdatePatientRecord, PatientSearch, GetAppointmentSlots, DataExtract, LaunchFunctionality, and more). Requires TPP Integration Request approval.
+- [SystmOne Patient Facing Services (PFS) API](https://tpp-uk.com/resources/integration-request/): Patient-facing appointment booking, prescription requests, and record access. Requires Integration Request approval and NHS conformance.
+- [SystmOne Generic HTML API](https://tpp-uk.com/resources/integration-request/): Embeds/launches third-party web content in context within the SystmOne client.
+- [SystmOne Telephony API](https://tpp-uk.com/resources/integration-request/): Computer-telephony integration, e.g. inbound-call patient matching.
+- [Interface Mechanism 1 (IM1)](https://digital.nhs.uk/developer/api-catalogue/interface-mechanism-1-standards): NHS England national route (Transaction, Bulk, Patient Facing Services APIs) onboarded via the Digital Care Services IM1 Pairing process and an NHS-approved SCAL.
+- [GP Connect (FHIR)](https://digital.nhs.uk/services/gp-connect): NHS England national HL7 FHIR interoperability programme exposing SystmOne records; secured with NHS-issued JWT (cross-organisation audit and provenance) over the Spine Secure Proxy with mutual TLS.
+
+## Access & authentication
+- Access model: enterprise / NHS partner conformance; not public, no free trial or self-serve signup.
+- SystmOne Client Integration API: gated by TPP Integration Request approval; XML over local TCP socket.
+- IM1: onboarded via NHS Digital Care Services IM1 Pairing and a Supplier Conformance Assessment List (SCAL).
+- GP Connect: NHS JWT + Spine Secure Proxy + mutual TLS (not open OAuth or SMART-on-FHIR).
+- Auth profile: [authentication/tpp-systmone-authentication.yml](authentication/tpp-systmone-authentication.yml)
+
+## Conformance & security
+- Certifications: ISO 27001, ISO 13485, ISO 14001, ISO 20000-1, Cyber Essentials, Cyber Essentials Plus; NHS DSPT.
+- Standards: HL7 FHIR (GP Connect), NHS Interface Mechanism 1.
+- Conformance: [conformance/tpp-systmone-conformance.yml](conformance/tpp-systmone-conformance.yml)
+- Domain security probe: [security/tpp-systmone-domain-security.yml](security/tpp-systmone-domain-security.yml)
+
+## Specifications & schemas
+- SystmOne Client Integration API spec (PDF) and XSD schemas: [schemas/](schemas/)
+- Lifecycle & versioning: [lifecycle/tpp-systmone-lifecycle.yml](lifecycle/tpp-systmone-lifecycle.yml)
+
+## Docs & company
+- [Integration Request process](https://tpp-uk.com/resources/integration-request/)
+- [Company website](https://tpp-uk.com)
+- [News & insights](https://tpp-uk.com/news-insights/)
+- [Support / contact](https://tpp-uk.com/contact_us/)
+- [NHS GP Connect programme](https://digital.nhs.uk/services/gp-connect)
+- [NHS IM1 Pairing Integration](https://digital.nhs.uk/services/digital-services-for-integrated-care/im1-pairing-integration)

@@ -1,0 +1,26 @@
+generated: '2026-07-24'
+method: searched
+source: >-
+  https://tpp-uk.com/resources/integration-request/ ,
+  https://digital.nhs.uk/services/digital-services-for-integrated-care/im1-pairing-integration
+note: >-
+  TPP versions its downloadable interface specifications directly (the SystmOne Client
+  Integration API ships as a numbered spec, currently v33.4). It runs no public status page
+  and no self-serve deprecation policy; lifecycle for the national integration routes (IM1,
+  GP Connect) is governed by NHS England's Digital Care Services framework and conformance
+  process, not by TPP.
+versioning:
+  scheme: document-version
+  current: 'SystmOne Client Integration API v33.4'
+  docs: https://tpp-uk.com/resources/integration-request/
+deprecation:
+  policy_url: null
+  governed_by: NHS England Digital Care Services (DCS) framework / SCAL conformance
+  sunset_header: false
+sla:
+  url: null
+  note: >-
+    SystmOne is a centrally hosted national clinical system; availability commitments are
+    contracted through the NHS, not published as a developer-facing SLA.
+status_page: null
+deprecated_operations: []

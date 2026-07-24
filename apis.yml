@@ -170,6 +170,8 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: DomainSecurity
+  url: security/tpp-systmone-domain-security.yml
 - type: Website
   url: https://tpp-uk.com
 - type: DeveloperPortal
@@ -188,3 +190,13 @@ common:
   url: https://tpp-uk.com/cyber-essentials-plus/
 - type: Compliance
   url: https://tpp-uk.com/iso-27001/
+- type: Authentication
+  url: authentication/tpp-systmone-authentication.yml
+- type: Conformance
+  url: conformance/tpp-systmone-conformance.yml
+- type: WellKnown
+  url: well-known/tpp-systmone-well-known.yml
+- type: Lifecycle
+  url: lifecycle/tpp-systmone-lifecycle.yml
+- type: LLMsTxt
+  url: llms/tpp-systmone-llms.txt

@@ -1,0 +1,28 @@
+generated: '2026-07-24'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: tpp-uk.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 19 23:09:55 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: digital.nhs.uk
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 24 21:58:44 2026 GMT
+  hsts: null
+domains:
+- domain: tpp-uk.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: nhs.uk
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

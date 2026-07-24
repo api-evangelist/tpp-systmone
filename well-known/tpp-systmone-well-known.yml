@@ -1,0 +1,23 @@
+generated: '2026-07-24'
+method: searched
+host: https://tpp-uk.com
+note: >-
+  Probed the only TPP-owned host (tpp-uk.com). No /.well-known/ discovery documents,
+  security.txt, or llms.txt are published — expected for a gated NHS integration vendor
+  with no self-serve developer portal. IM1 and GP Connect discovery lives on NHS England
+  infrastructure (digital.nhs.uk / NHS Spine), which is not a TPP-owned property.
+documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404

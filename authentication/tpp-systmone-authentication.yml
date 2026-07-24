@@ -1,0 +1,50 @@
+generated: '2026-07-24'
+method: searched
+source: >-
+  https://digital.nhs.uk/services/gp-connect ,
+  https://nhsconnect.github.io/FHIR-SpineCore/ssp_overview.html ,
+  https://tpp-uk.com/resources/integration-request/
+note: >-
+  TPP SystmOne publishes no OpenAPI and no public OAuth surface; authentication cannot be
+  derived from a spec. This profile is searched from TPP's Integration Request materials
+  and the NHS England GP Connect / IM1 / Spine Secure Proxy documentation. Three distinct
+  auth models apply depending on the integration route.
+summary:
+  types: [mutualTLS, nhs-jwt, approval-gated-socket]
+  public_self_serve: false
+  onboarding: NHS partner conformance (Integration Request / IM1 Pairing / SCAL)
+schemes:
+  - name: SystmOneClientIntegrationApproval
+    api: SystmOne Client Integration API
+    type: approval-gated
+    transport: XML over local TCP socket
+    description: >-
+      An approved third-party application interacts with a running SystmOne client over a
+      local TCP socket, exchanging XML documents validated against published XSD schemas.
+      There is no bearer token or OAuth flow; access is gated by TPP's Integration Request
+      approval and organisation-level enablement rather than a runtime credential handshake.
+    source: https://tpp-uk.com/resources/integration-request/
+  - name: IM1PairingConformance
+    api: Interface Mechanism 1 (IM1)
+    type: nhs-conformance
+    description: >-
+      IM1 Transaction, Bulk, and Patient Facing Services integrations are onboarded through
+      the NHS England Digital Care Services IM1 Pairing Integration Process and a Supplier
+      Conformance Assessment List (SCAL). Endpoints are provisioned per approved pairing;
+      credentials and connection details are issued as part of conformance, not self-serve.
+    source: https://digital.nhs.uk/developer/api-catalogue/interface-mechanism-1-standards
+  - name: GPConnectSpineSecureProxyJWT
+    api: GP Connect (FHIR)
+    type: nhs-jwt
+    description: >-
+      GP Connect FHIR requests are routed through the NHS Spine Secure Proxy (SSP), a
+      forward HTTP proxy that is the single point of authentication and authorisation.
+      Each request carries an NHS-issued JSON Web Token (JWT) conveying cross-organisation
+      audit and provenance (issuer, requesting system, requesting organisation, requesting
+      user); insufficient audit information causes the SSP to block the request. Both legs
+      of the request (consumer-to-proxy and proxy-to-provider) are secured with mutual TLS.
+    mechanisms:
+      - json_web_token: NHS cross-organisation audit and provenance JWT
+      - mutual_tls: TLS-MA on both request legs via Spine Secure Proxy
+      - data_sharing_agreement_check: enforced by SSP
+    source: https://nhsconnect.github.io/FHIR-SpineCore/ssp_overview.html

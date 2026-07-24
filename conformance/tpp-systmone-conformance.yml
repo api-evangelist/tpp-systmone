@@ -1,0 +1,71 @@
+generated: '2026-07-24'
+method: searched
+source: https://tpp-uk.com/iso-27001/
+note: >-
+  TPP publishes a portfolio of ISO certifications and UK Cyber Essentials accreditations,
+  and its SystmOne integrations conform to the NHS England national interoperability
+  standards (HL7 FHIR via GP Connect, Interface Mechanism 1). No public OpenAPI is
+  published; the SystmOne Client Integration API is XML-over-TCP validated against
+  published XSD schemas. Standards below are asserted from published certifications
+  (searched) and from the interoperability programmes SystmOne participates in.
+standards:
+  # Published certifications (searched from tpp-uk.com)
+  - id: iso-27001
+    name: ISO/IEC 27001 Information Security Management
+    conforms: true
+    evidence: https://tpp-uk.com/iso-27001/
+  - id: iso-13485
+    name: ISO 13485 Medical Devices Quality Management
+    conforms: true
+    evidence: https://tpp-uk.com/iso-27001/
+  - id: iso-14001
+    name: ISO 14001 Environmental Management
+    conforms: true
+    evidence: https://tpp-uk.com/iso-27001/
+  - id: iso-20000-1
+    name: ISO/IEC 20000-1 IT Service Management
+    conforms: true
+    evidence: https://tpp-uk.com/iso-27001/
+  - id: cyber-essentials
+    name: UK Cyber Essentials
+    conforms: true
+    evidence: https://tpp-uk.com/cyber-essentials-plus/
+  - id: cyber-essentials-plus
+    name: UK Cyber Essentials Plus
+    conforms: true
+    evidence: https://tpp-uk.com/cyber-essentials-plus/
+  # NHS interoperability / cross-cutting standards SystmOne participates in
+  - id: hl7-fhir
+    name: HL7 FHIR (GP Connect programme)
+    conforms: true
+    evidence: >-
+      SystmOne clinical records are exposed through NHS England GP Connect FHIR APIs
+      (Access Record: Structured, Access Document, Appointment Management).
+    source: https://digital.nhs.uk/services/gp-connect
+  - id: nhs-im1
+    name: NHS England Interface Mechanism 1 (IM1) integration standards
+    conforms: true
+    evidence: >-
+      Third-party applications integrate with SystmOne via IM1 Transaction, Bulk, and
+      Patient Facing Services APIs under the Digital Care Services framework and a
+      Supplier Conformance Assessment List (SCAL) approved by NHS England.
+    source: https://digital.nhs.uk/developer/api-catalogue/interface-mechanism-1-standards
+  - id: nhs-dspt
+    name: NHS Data Security and Protection Toolkit (DSPT)
+    conforms: true
+    evidence: >-
+      Mandatory annual self-assessment for all organisations with access to NHS patient
+      data and systems; a precondition of NHS supplier conformance.
+    source: https://digital.nhs.uk/cyber-and-data-security/cyber-security-services/data-security-and-protection-toolkit
+  # Standards not applicable / not evidenced for a gated NHS EHR integration surface
+  - id: oauth2
+    conforms: false
+    note: >-
+      GP Connect uses NHS-issued JWT for cross-organisation audit/provenance over the
+      Spine Secure Proxy (mutual TLS), not open OAuth 2.0 authorization.
+  - id: rfc9457-problem-details
+    conforms: false
+    note: No public OpenAPI; error semantics are XSD-defined XML fault responses.
+  - id: smart-on-fhir
+    conforms: false
+    note: GP Connect uses Spine Secure Proxy + NHS JWT, not open SMART-on-FHIR launch.
