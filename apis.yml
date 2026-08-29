@@ -17,6 +17,17 @@ description: >-
   specifications - the SystmOne Client Integration API (XML over a TCP socket), a Patient
   Facing Services (PFS) API, a Generic HTML API, and a Telephony API - and a formal
   Integration Request process. Home market is the United Kingdom, exclusively within the NHS.
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: partner
