@@ -110,6 +110,10 @@ apis:
   humanURL: https://tpp-uk.com/resources/integration-request/
   tags:
   - HTML
+  - Embeddings
+  - Integration
+  tags_raw:
+  - HTML
   - Embedding
   - Integration
   properties:
