@@ -1,12 +1,13 @@
 generated: '2026-07-24'
 method: searched
 host: https://tpp-uk.com
-note: >-
-  Probed the only TPP-owned host (tpp-uk.com). No /.well-known/ discovery documents,
-  security.txt, or llms.txt are published — expected for a gated NHS integration vendor
-  with no self-serve developer portal. IM1 and GP Connect discovery lives on NHS England
-  infrastructure (digital.nhs.uk / NHS Spine), which is not a TPP-owned property.
-documents:
+note: Probed the only TPP-owned host (tpp-uk.com). No /.well-known/ discovery documents, security.txt,
+  or llms.txt are published — expected for a gated NHS integration vendor with no self-serve developer
+  portal. IM1 and GP Connect discovery lives on NHS England infrastructure (digital.nhs.uk / NHS Spine),
+  which is not a TPP-owned property.
+hosts:
+- host: https://tpp-uk.com
+  documents:
   - path: /.well-known/security.txt
     status: 404
   - path: /.well-known/openid-configuration
@@ -17,7 +18,8 @@ documents:
     status: 404
   - path: /.well-known/ai-plugin.json
     status: 404
-  - path: /security.txt
-    status: 404
-  - path: /llms.txt
-    status: 404
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.
