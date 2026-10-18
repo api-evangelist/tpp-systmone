@@ -45,6 +45,18 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.j
 tags:
 - Healthcare
 - United Kingdom
+- Electronic Health Records
+- FHIR
+- HL7
+- Interoperability
+- GP Connect
+- IM1
+- National Health System
+- Primary Care
+- Clinical System
+tags_raw:
+- Healthcare
+- United Kingdom
 - EHR
 - EMR
 - FHIR
@@ -71,6 +83,11 @@ apis:
     and ExitClient. Access requires TPP's Integration Request approval.
   humanURL: https://tpp-uk.com/resources/integration-request/
   tags:
+  - Integration
+  - Electronic Health Records
+  - Clinical System
+  - XML
+  tags_raw:
   - Integration
   - EHR
   - Clinical System
@@ -150,6 +167,11 @@ apis:
     TPP-hosted portal.
   humanURL: https://digital.nhs.uk/developer/api-catalogue/interface-mechanism-1-standards
   tags:
+  - IM1
+  - National Health System
+  - Interoperability
+  - Electronic Health Records
+  tags_raw:
   - IM1
   - National Health System
   - Interoperability
